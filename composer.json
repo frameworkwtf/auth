@@ -9,8 +9,9 @@
         "wtf/orm": "^1"
     },
     "suggest": {
-        "wtf/html": "HTML bundle with twig and sessions (to implement session-based login)",
-        "wtf/rest": "REST bundle with JWT tokens (to implement jwt-based login)"
+        "wtf/html": "HTML bundle with twig and sessions (to implement session-based auth)",
+        "wtf/rest": "REST bundle with JWT tokens (to implement jwt-based auth)",
+        "dflydev/fig-cookies": "To implement cookie-based auth"
     },
     "autoload": {
         "psr-4": {
