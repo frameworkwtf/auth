@@ -12,6 +12,8 @@ interface StorageInterface
      * Set user data to storage.
      *
      * @param Root $user
+     *
+     * @return mixed
      */
     public function setUser(Root $user);
 

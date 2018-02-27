@@ -11,7 +11,7 @@ class Session extends Root implements StorageInterface
     /**
      * {@inheritdoc}
      */
-    public function setUser(Root $user): void
+    public function setUser(Root $user)
     {
         if (PHP_SESSION_ACTIVE !== session_status()) {
             throw new \Exception('Session not started');
@@ -21,6 +21,8 @@ class Session extends Root implements StorageInterface
         if (isset($_SESSION['user']['password'])) {
             unset($_SESSION['user']['password']);
         }
+
+        return $user;
     }
 
     /**

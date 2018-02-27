@@ -9,12 +9,14 @@ class Auth extends Root
     /**
      * Log in user.
      *
+     * Return result, based by selected session storage
+     *
      * @param string $login
      * @param string $password
      *
-     * @return null|Root
+     * @return mixed
      */
-    public function login(string $login, string $password): ?Root
+    public function login(string $login, string $password)
     {
         $user = $this->auth_repository->login($login, $password);
 
@@ -22,9 +24,7 @@ class Auth extends Root
             return null;
         }
 
-        $this->auth_storage->setUser($user);
-
-        return $user;
+        return $this->auth_storage->setUser($user);
     }
 
     /**
