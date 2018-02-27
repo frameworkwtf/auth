@@ -30,20 +30,24 @@ class Auth extends Root
     /**
      * Check if current user is logged in.
      *
+     * @param mixed $storage custom storage, for JWT, Session, etc
+     *
      * @return bool
      */
-    public function isLoggedIn(): bool
+    public function isLoggedIn($storage = null): bool
     {
-        return $this->auth_storage->isLoggedIn();
+        return $this->auth_storage->isLoggedIn($storage);
     }
 
     /**
      * Get current user.
      *
+     * @param mixed $storage custom storage, for JWT, Session, etc
+     *
      * @return null|Root
      */
-    public function getUser(): ?Root
+    public function getUser($storage = null): ?Root
     {
-        return $this->auth_storage->getUser();
+        return $this->auth_storage->getUser($storage);
     }
 }

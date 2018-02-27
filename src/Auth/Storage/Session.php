@@ -44,7 +44,7 @@ class Session extends Root implements StorageInterface
     /**
      * {@inheritdoc}
      */
-    public function isLoggedIn(): bool
+    public function isLoggedIn($storage = null): bool
     {
         if (PHP_SESSION_ACTIVE !== session_status()) {
             return null;
