@@ -45,7 +45,7 @@ class Cookie extends Root implements StorageInterface
     /**
      * {@inheritdoc}
      */
-    public function isLoggedIn(): bool
+    public function isLoggedIn($storage = null): bool
     {
         if (!class_exists(\Dflydev\FigCookies\Cookie::class)) {
             throw new \Exception('wtf/auth cookie storage requires dflydev/fig-cookies package installed');

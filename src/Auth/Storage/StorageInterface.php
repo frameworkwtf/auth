@@ -29,7 +29,9 @@ interface StorageInterface
     /**
      * Check if current user logged in.
      *
+     * @param mixed $storage Custom storage, eg: jwt token string, default: null
+     *
      * @return bool
      */
-    public function isLoggedIn(): bool;
+    public function isLoggedIn($storage = null): bool;
 }
