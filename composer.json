@@ -1,0 +1,20 @@
+{
+    "name": "wtf/auth",
+    "type": "library",
+    "description": "Auth library for WTF Framework",
+    "license": "MIT",
+    "prefer-stable": true,
+    "require": {
+        "wtf/core": "^1",
+        "wtf/orm": "^1"
+    },
+    "suggest": {
+        "wtf/html": "HTML bundle with twig and sessions (to implement session-based login)",
+        "wtf/rest": "REST bundle with JWT tokens (to implement jwt-based login)"
+    },
+    "autoload": {
+        "psr-4": {
+            "Wtf\\": "src/"
+        }
+    }
+}
