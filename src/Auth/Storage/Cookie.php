@@ -26,13 +26,13 @@ class Cookie extends Root implements StorageInterface
     /**
      * {@inheritdoc}
      */
-    public function getUser($storage = null): ?Root
+    public function getUser(): ?Root
     {
         if (!class_exists(\Dflydev\FigCookies\Cookie::class)) {
             throw new \Exception('wtf/auth cookie storage requires dflydev/fig-cookies package installed');
         }
 
-        if ($id = \Dflydev\FigCookies\FigRequestCookies::get($storage, 'user_id', null)->getValue()) {
+        if ($id = \Dflydev\FigCookies\FigRequestCookies::get($this->request, 'user_id', null)->getValue()) {
             $entity = $this->entity($this->config('auth.entity'));
             if ($entity->has(['id' => $id])) {
                 return $entity->load($id);
@@ -45,12 +45,12 @@ class Cookie extends Root implements StorageInterface
     /**
      * {@inheritdoc}
      */
-    public function isLoggedIn($storage = null): bool
+    public function isLoggedIn(): bool
     {
         if (!class_exists(\Dflydev\FigCookies\Cookie::class)) {
             throw new \Exception('wtf/auth cookie storage requires dflydev/fig-cookies package installed');
         }
 
-        return (bool) \Dflydev\FigCookies\FigRequestCookies::get($storage, 'user_id', null)->getValue();
+        return (bool) \Dflydev\FigCookies\FigRequestCookies::get($this->request, 'user_id', null)->getValue();
     }
 }

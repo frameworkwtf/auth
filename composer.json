@@ -5,7 +5,7 @@
     "license": "MIT",
     "prefer-stable": true,
     "require": {
-        "wtf/core": "^1",
+        "wtf/core": "^1.1.1",
         "wtf/orm": "^1"
     },
     "suggest": {

@@ -35,7 +35,7 @@ class JWT extends Root implements StorageInterface
     /**
      * {@inheritdoc}
      */
-    public function getUser($storage = null): ?Root
+    public function getUser(): ?Root
     {
         if (!class_exists(\Firebase\JWT\JWT::class)) {
             throw new \Exception('wtf/auth jwt storage requires wtf/rest or firebase/php-jwt packages installed');
@@ -51,21 +51,14 @@ class JWT extends Root implements StorageInterface
             return is_object($token) && property_exists($token, 'data') ? $token->data : $token;
         }
 
-        // $storage arg implementation
-        if ($storage) {
-            $token = \Firebase\JWT\JWT::decode($storage, getenv('APP_SECRET'), $this->config('jwt.algorithm', ['HS256', 'HS512', 'HS384']));
-
-            return is_object($token) && property_exists($token, 'data') ? $token->data : $token;
-        }
-
         return null;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function isLoggedIn($storage = null): bool
+    public function isLoggedIn(): bool
     {
-        return (bool) $this->getUser($storage);
+        return (bool) $this->getUser();
     }
 }

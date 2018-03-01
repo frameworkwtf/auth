@@ -20,18 +20,14 @@ interface StorageInterface
     /**
      * Get current user from storage.
      *
-     * @param mixed $storage Custom storage, eg: jwt token string, default: null
-     *
      * @return null|Root
      */
-    public function getUser($storage = null): ?Root;
+    public function getUser(): ?Root;
 
     /**
      * Check if current user logged in.
      *
-     * @param mixed $storage Custom storage, eg: jwt token string, default: null
-     *
      * @return bool
      */
-    public function isLoggedIn($storage = null): bool;
+    public function isLoggedIn(): bool;
 }
