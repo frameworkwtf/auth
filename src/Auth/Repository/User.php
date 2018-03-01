@@ -46,7 +46,7 @@ class User extends Root implements RepositoryInterface
             return null;
         }
 
-        if (!password_verify($password, $this->hashPassword($password))) {
+        if (!password_verify($password, $user->get($this->getPasswordField()))) {
             return null;
         }
 
@@ -56,15 +56,13 @@ class User extends Root implements RepositoryInterface
     /**
      * {@inheritdoc}
      */
-    public function getByLogin(string $login): ?RepositoryInterface
+    public function getByLogin(string $login): ?Root
     {
         $entity = $this->entity($this->config('auth.entity', 'user'));
         foreach ($this->getLoginFields() as $field) {
             try {
                 if ($entity->has([$field => $login])) {
-                    $this->data = $entity->load($login, $field)->getData();
-
-                    return $this;
+                    return $entity->load($login, $field);
                 }
             } catch (\Throwable $t) {
                 //If field does not exist, exception will be thrown,
@@ -73,6 +71,6 @@ class User extends Root implements RepositoryInterface
             }
         }
 
-        return $null;
+        return null;
     }
 }

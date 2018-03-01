@@ -17,7 +17,7 @@ class Cookie extends Root implements StorageInterface
             throw new \Exception('wtf/auth cookie storage requires dflydev/fig-cookies package installed');
         }
 
-        return \Dflydev\FigCookies\Cookie::create('user_id', $user->getId())
+        return \Dflydev\FigCookies\SetCookie::create('user_id', $user->getId())
                                                                   ->rememberForever()
                                                                   ->withDomain(getenv('APP_HOST'))
                                                                   ->withHttpOnly(true);

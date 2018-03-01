@@ -13,7 +13,7 @@ interface RepositoryInterface
      *
      * @return null|RepositoryInterface
      */
-    public function getByLogin(string $login): ?self;
+    public function getByLogin(string $login): ?Root;
 
     /**
      * Get login fields, eg: ['email', 'username'].

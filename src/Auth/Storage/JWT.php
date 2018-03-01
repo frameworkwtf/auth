@@ -29,7 +29,7 @@ class JWT extends Root implements StorageInterface
             'aud' => $this->config('jwt.aud', getenv('APP_HOST')),
             'exp' => $this->config('jwt.exp', time() + 604800),
             'data' => $data,
-        ], getenv('APP_SECRET'), $this->config('jwt.algorithm'.['HS256'])[0]);
+        ], getenv('APP_SECRET'), $this->config('jwt.algorithm', ['HS256'])[0]);
     }
 
     /**
@@ -43,12 +43,14 @@ class JWT extends Root implements StorageInterface
 
         // wtf/rest implementation
         if ($this->container->has('user')) {
-            return $this->user;
+            return $this->entity($this->config('auth.entity'))->setData($this->user);
         }
 
         // tuupola/slim-jwt-auth implementation
         if ($token = $this->request->getAttribute($this->config('jwt.attribute', 'token'))) {
-            return is_object($token) && property_exists($token, 'data') ? $token->data : $token;
+            $data = (array) (is_object($token) && property_exists($token, 'data') ? $token->data : ($token['data'] ?? $token));
+
+            return $this->entity($this->config('auth.entity'))->setData($data);
         }
 
         return null;
