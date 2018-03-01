@@ -4,14 +4,16 @@ declare(strict_types=1);
 
 namespace Wtf\Auth\Repository;
 
+use Wtf\Root;
+
 interface RepositoryInterface
 {
     /**
      * Get user by login.
      *
-     * @return RepositoryInterface
+     * @return null|RepositoryInterface
      */
-    public function getByLogin(string $login): self;
+    public function getByLogin(string $login): ?self;
 
     /**
      * Get login fields, eg: ['email', 'username'].

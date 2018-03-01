@@ -62,7 +62,7 @@ class User extends Root implements RepositoryInterface
         foreach ($this->getLoginFields() as $field) {
             try {
                 if ($entity->has([$field => $login])) {
-                    $this->data = $entity->getData();
+                    $this->data = $entity->load($login, $field)->getData();
 
                     return $this;
                 }
