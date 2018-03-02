@@ -6,6 +6,4 @@
 
 # TODO
 
-* Provider
-* Tests
 * Social auth
