@@ -33,11 +33,11 @@ class Dummy extends \Wtf\Root
     {
         if (
             ('login' === array_keys($where)[0] && 'login' === $where['login'])
-            || ('id' === array_keys($where)[0] && 1 === $where['id'])
+            || ('id' === array_keys($where)[0] && '1' === $where['id'])
         ) {
             return true;
         }
 
-        throw new \Exception('test exception with not existing field');
+        return false;
     }
 }

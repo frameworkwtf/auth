@@ -34,7 +34,7 @@ class CookieTest extends TestCase
 
     public function testGetUser(): void
     {
-        $cookie = $this->app->getContainer()->auth->login('login', 'me');
+        $cookie = \Dflydev\FigCookies\Cookie::create('user_id', 1);
         $request = $this->app->getContainer()['request'];
         unset($this->app->getContainer()['request']);
         $this->app->getContainer()['request'] = \Dflydev\FigCookies\FigRequestCookies::set($request, $cookie);
