@@ -13,9 +13,11 @@ class JWT extends Root implements StorageInterface
      */
     public function setUser(Root $user)
     {
+        //@codeCoverageIgnoreStart
         if (!class_exists(\Firebase\JWT\JWT::class)) {
             throw new \Exception('wtf/auth jwt storage requires wtf/rest or firebase/php-jwt packages installed');
         }
+        //@codeCoverageIgnoreEnd
         $data = $user->getData();
         if ($data['password'] ?? null) {
             unset($data['password']);
@@ -37,9 +39,11 @@ class JWT extends Root implements StorageInterface
      */
     public function getUser(): ?Root
     {
+        //@codeCoverageIgnoreStart
         if (!class_exists(\Firebase\JWT\JWT::class)) {
             throw new \Exception('wtf/auth jwt storage requires wtf/rest or firebase/php-jwt packages installed');
         }
+        //@codeCoverageIgnoreEnd
 
         // wtf/rest implementation
         if ($this->container->has('user')) {

@@ -27,16 +27,6 @@ class User extends Root implements RepositoryInterface
     }
 
     /**
-     * Hash password.
-     *
-     * @return string
-     */
-    public function hashPassword(string $password): string
-    {
-        return password_hash($password, $this->config('auth.password.algo', PASSWORD_DEFAULT), $this->config('auth.password.options', []));
-    }
-
-    /**
      * {@inheritdoc}
      */
     public function login(string $login, string $password): ?Root

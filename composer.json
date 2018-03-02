@@ -4,6 +4,7 @@
     "description": "Auth library for WTF Framework",
     "license": "MIT",
     "prefer-stable": true,
+    "minimum-stability": "dev",
     "require": {
         "wtf/core": "^1.1.1",
         "wtf/orm": "^1"

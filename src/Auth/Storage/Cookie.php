@@ -13,14 +13,13 @@ class Cookie extends Root implements StorageInterface
      */
     public function setUser(Root $user)
     {
+        //@codeCoverageIgnoreStart
         if (!class_exists(\Dflydev\FigCookies\Cookie::class)) {
             throw new \Exception('wtf/auth cookie storage requires dflydev/fig-cookies package installed');
         }
+        //@codeCoverageIgnoreEnd
 
-        return \Dflydev\FigCookies\SetCookie::create('user_id', $user->getId())
-                                                                  ->rememberForever()
-                                                                  ->withDomain(getenv('APP_HOST'))
-                                                                  ->withHttpOnly(true);
+        return \Dflydev\FigCookies\Cookie::create('user_id', $user->getId());
     }
 
     /**
@@ -28,9 +27,11 @@ class Cookie extends Root implements StorageInterface
      */
     public function getUser(): ?Root
     {
+        //@codeCoverageIgnoreStart
         if (!class_exists(\Dflydev\FigCookies\Cookie::class)) {
             throw new \Exception('wtf/auth cookie storage requires dflydev/fig-cookies package installed');
         }
+        //@codeCoverageIgnoreEnd
 
         if ($id = \Dflydev\FigCookies\FigRequestCookies::get($this->request, 'user_id', null)->getValue()) {
             $entity = $this->entity($this->config('auth.entity'));
@@ -47,9 +48,11 @@ class Cookie extends Root implements StorageInterface
      */
     public function isLoggedIn(): bool
     {
+        //@codeCoverageIgnoreStart
         if (!class_exists(\Dflydev\FigCookies\Cookie::class)) {
             throw new \Exception('wtf/auth cookie storage requires dflydev/fig-cookies package installed');
         }
+        //@codeCoverageIgnoreEnd
 
         return (bool) \Dflydev\FigCookies\FigRequestCookies::get($this->request, 'user_id', null)->getValue();
     }
