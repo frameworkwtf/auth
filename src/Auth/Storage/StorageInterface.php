@@ -30,4 +30,9 @@ interface StorageInterface
      * @return bool
      */
     public function isLoggedIn(): bool;
+
+    /**
+     * Log out current user.
+     */
+    public function logout(): void;
 }

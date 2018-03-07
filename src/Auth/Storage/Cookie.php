@@ -54,6 +54,18 @@ class Cookie extends Root implements StorageInterface
         }
         //@codeCoverageIgnoreEnd
 
-        return (bool) \Dflydev\FigCookies\FigRequestCookies::get($this->request, 'user_id', null)->getValue();
+        return (bool) $this->getUser();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function logout(): void
+    {
+        $request = $this->request;
+        unset($this->container['request']);
+        $this->container['request'] = \Dflydev\FigCookies\FigRequestCookies::modify($request, 'user_id', function (\Dflydev\FigCookies\Cookie $cookie) {
+            return $cookie->withValue(null);
+        });
     }
 }

@@ -46,4 +46,9 @@ class Auth extends Root
     {
         return $this->auth_storage->getUser();
     }
+
+    public function logout(): void
+    {
+        $this->auth_storage->logout();
+    }
 }

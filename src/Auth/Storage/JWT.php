@@ -67,4 +67,12 @@ class JWT extends Root implements StorageInterface
     {
         return (bool) $this->getUser();
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function logout(): void
+    {
+        //nothing to do here
+    }
 }

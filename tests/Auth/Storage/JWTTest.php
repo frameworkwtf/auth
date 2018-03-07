@@ -55,4 +55,9 @@ class JWTTest extends TestCase
         $this->assertNull($this->app->getContainer()->auth->login('login', 'wrongpassword'));
         $this->assertInternalType('string', $this->app->getContainer()->auth->login('login', 'me'));
     }
+
+    public function testLogout(): void
+    {
+        $this->assertNull($this->app->getContainer()->auth->logout());
+    }
 }
