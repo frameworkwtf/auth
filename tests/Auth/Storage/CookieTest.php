@@ -51,7 +51,8 @@ class CookieTest extends TestCase
 
     public function testLogout(): void
     {
+        $this->assertInstanceOf('\Dflydev\FigCookies\Cookie', $this->app->getContainer()->auth->login('login', 'me'));
         $this->app->getContainer()->auth->logout();
-        $this->assertNull(\Dflydev\FigCookies\FigRequestCookies::get($this->app->getContainer()['request'], 'user_id', 'default')->getValue());
+        $this->assertEmpty(\Dflydev\FigCookies\FigRequestCookies::get($this->app->getContainer()['request'], 'user_id', 'default')->getValue());
     }
 }
