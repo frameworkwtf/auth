@@ -14,7 +14,7 @@ class Cookie extends Root implements StorageInterface
     public function setUser(Root $user)
     {
         //@codeCoverageIgnoreStart
-        if (!class_exists(\Dflydev\FigCookies\Cookie::class)) {
+        if (!\class_exists(\Dflydev\FigCookies\Cookie::class)) {
             throw new \Exception('wtf/auth cookie storage requires dflydev/fig-cookies package installed');
         }
         //@codeCoverageIgnoreEnd
@@ -28,7 +28,7 @@ class Cookie extends Root implements StorageInterface
     public function getUser(): ?Root
     {
         //@codeCoverageIgnoreStart
-        if (!class_exists(\Dflydev\FigCookies\Cookie::class)) {
+        if (!\class_exists(\Dflydev\FigCookies\Cookie::class)) {
             throw new \Exception('wtf/auth cookie storage requires dflydev/fig-cookies package installed');
         }
         //@codeCoverageIgnoreEnd
@@ -49,7 +49,7 @@ class Cookie extends Root implements StorageInterface
     public function isLoggedIn(): bool
     {
         //@codeCoverageIgnoreStart
-        if (!class_exists(\Dflydev\FigCookies\Cookie::class)) {
+        if (!\class_exists(\Dflydev\FigCookies\Cookie::class)) {
             throw new \Exception('wtf/auth cookie storage requires dflydev/fig-cookies package installed');
         }
         //@codeCoverageIgnoreEnd

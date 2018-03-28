@@ -14,7 +14,7 @@ class JWT extends Root implements StorageInterface
     public function setUser(Root $user)
     {
         //@codeCoverageIgnoreStart
-        if (!class_exists(\Firebase\JWT\JWT::class)) {
+        if (!\class_exists(\Firebase\JWT\JWT::class)) {
             throw new \Exception('wtf/auth jwt storage requires wtf/rest or firebase/php-jwt packages installed');
         }
         //@codeCoverageIgnoreEnd
@@ -24,14 +24,14 @@ class JWT extends Root implements StorageInterface
         }
 
         return \Firebase\JWT\JWT::encode([
-            'jti' => $user->getId().time().random_int(PHP_INT_MIN, PHP_INT_MAX),
-            'iat' => $this->config('jwt.iat', time()),
-            'nbf' => $this->config('jwt.nbf', time()),
-            'iss' => $this->config('jwt.iss', getenv('APP_HOST')),
-            'aud' => $this->config('jwt.aud', getenv('APP_HOST')),
-            'exp' => $this->config('jwt.exp', time() + 604800),
+            'jti' => $user->getId().\time().\random_int(PHP_INT_MIN, PHP_INT_MAX),
+            'iat' => $this->config('jwt.iat', \time()),
+            'nbf' => $this->config('jwt.nbf', \time()),
+            'iss' => $this->config('jwt.iss', \getenv('APP_HOST')),
+            'aud' => $this->config('jwt.aud', \getenv('APP_HOST')),
+            'exp' => $this->config('jwt.exp', \time() + 604800),
             'data' => $data,
-        ], getenv('APP_SECRET'), $this->config('jwt.algorithm', ['HS256'])[0]);
+        ], \getenv('APP_SECRET'), $this->config('jwt.algorithm', ['HS256'])[0]);
     }
 
     /**
@@ -40,7 +40,7 @@ class JWT extends Root implements StorageInterface
     public function getUser(): ?Root
     {
         //@codeCoverageIgnoreStart
-        if (!class_exists(\Firebase\JWT\JWT::class)) {
+        if (!\class_exists(\Firebase\JWT\JWT::class)) {
             throw new \Exception('wtf/auth jwt storage requires wtf/rest or firebase/php-jwt packages installed');
         }
         //@codeCoverageIgnoreEnd
@@ -52,7 +52,7 @@ class JWT extends Root implements StorageInterface
 
         // tuupola/slim-jwt-auth implementation
         if ($token = $this->request->getAttribute($this->config('jwt.attribute', 'token'))) {
-            $data = (array) (is_object($token) && property_exists($token, 'data') ? $token->data : ($token['data'] ?? $token));
+            $data = (array) (\is_object($token) && \property_exists($token, 'data') ? $token->data : ($token['data'] ?? $token));
 
             return $this->entity($this->config('auth.entity'))->setData($data);
         }

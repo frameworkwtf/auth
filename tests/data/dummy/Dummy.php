@@ -14,7 +14,7 @@ class Dummy extends \Wtf\Root
 
     public function setData($data)
     {
-        $this->data = array_merge($this->data, $data);
+        $this->data = \array_merge($this->data, $data);
 
         return $this;
     }
@@ -32,8 +32,8 @@ class Dummy extends \Wtf\Root
     public function has($where)
     {
         if (
-            ('login' === array_keys($where)[0] && 'login' === $where['login'])
-            || ('id' === array_keys($where)[0] && '1' === $where['id'])
+            ('login' === \array_keys($where)[0] && 'login' === $where['login'])
+            || ('id' === \array_keys($where)[0] && '1' === $where['id'])
         ) {
             return true;
         }

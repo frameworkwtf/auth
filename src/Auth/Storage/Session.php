@@ -13,7 +13,7 @@ class Session extends Root implements StorageInterface
      */
     public function setUser(Root $user)
     {
-        if (PHP_SESSION_ACTIVE !== session_status()) {
+        if (PHP_SESSION_ACTIVE !== \session_status()) {
             throw new \Exception('Session not started');
         }
 
@@ -30,7 +30,7 @@ class Session extends Root implements StorageInterface
      */
     public function getUser(): ?Root
     {
-        if (PHP_SESSION_ACTIVE !== session_status()) {
+        if (PHP_SESSION_ACTIVE !== \session_status()) {
             return null;
         }
 
@@ -46,7 +46,7 @@ class Session extends Root implements StorageInterface
      */
     public function isLoggedIn(): bool
     {
-        if (PHP_SESSION_ACTIVE !== session_status()) {
+        if (PHP_SESSION_ACTIVE !== \session_status()) {
             return false;
         }
 
@@ -59,8 +59,8 @@ class Session extends Root implements StorageInterface
     public function logout(): void
     {
         $_SESSION = [];
-        if (PHP_SESSION_ACTIVE === session_status()) {
-            session_destroy();
+        if (PHP_SESSION_ACTIVE === \session_status()) {
+            \session_destroy();
         }
     }
 }

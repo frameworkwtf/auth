@@ -50,7 +50,7 @@ class SessionTest extends TestCase
      */
     public function testLoggedIn(): void
     {
-        session_start();
+        \session_start();
         $this->assertFalse($this->app->getContainer()->auth->isLoggedIn());
     }
 
@@ -59,7 +59,7 @@ class SessionTest extends TestCase
      */
     public function testGetUserNull(): void
     {
-        session_start();
+        \session_start();
         $this->assertNull($this->app->getContainer()->auth->getUser());
     }
 
@@ -68,7 +68,7 @@ class SessionTest extends TestCase
      */
     public function testGetUser(): void
     {
-        session_start();
+        \session_start();
         $_SESSION['user'] = ['login' => 'login'];
 
         $this->assertInstanceOf('\Wtf\Root', $this->app->getContainer()->auth->getUser());
@@ -80,7 +80,7 @@ class SessionTest extends TestCase
      */
     public function testLogin(): void
     {
-        session_start();
+        \session_start();
         $this->assertNull($this->app->getContainer()->auth->login('notexist', 'password'));
         $this->assertNull($this->app->getContainer()->auth->login('login', 'wrongpassword'));
         $this->assertInstanceOf('\Wtf\Root', $this->app->getContainer()->auth->login('login', 'me'));
@@ -91,7 +91,7 @@ class SessionTest extends TestCase
      */
     public function testLogout(): void
     {
-        session_start();
+        \session_start();
         $this->app->getContainer()->auth->login('login', 'me');
         $this->assertInstanceOf('\Wtf\Root', $this->app->getContainer()->auth->getUser());
         $this->app->getContainer()->auth->logout();

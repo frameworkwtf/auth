@@ -36,7 +36,7 @@ class User extends Root implements RepositoryInterface
             return null;
         }
 
-        if (!password_verify($password, $user->get($this->getPasswordField()))) {
+        if (!\password_verify($password, $user->get($this->getPasswordField()))) {
             return null;
         }
 
