@@ -18,6 +18,7 @@ class ProviderTest extends TestCase
 
     public function testRegister(): void
     {
+        $this->assertInstanceOf('\Wtf\Root', $this->app->getContainer()->rbac_middleware);
         $this->assertInstanceOf('\Wtf\Auth\Repository\RepositoryInterface', $this->app->getContainer()->auth_repository);
         $this->assertInstanceOf('\Wtf\Auth\Storage\StorageInterface', $this->app->getContainer()->auth_storage);
         $this->assertInstanceOf('\Wtf\Auth', $this->app->getContainer()->auth);
