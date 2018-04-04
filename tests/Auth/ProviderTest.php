@@ -22,5 +22,6 @@ class ProviderTest extends TestCase
         $this->assertInstanceOf('\Wtf\Auth\Repository\RepositoryInterface', $this->app->getContainer()->auth_repository);
         $this->assertInstanceOf('\Wtf\Auth\Storage\StorageInterface', $this->app->getContainer()->auth_storage);
         $this->assertInstanceOf('\Wtf\Auth', $this->app->getContainer()->auth);
+        $this->assertNull($this->app->getContainer()->user);
     }
 }

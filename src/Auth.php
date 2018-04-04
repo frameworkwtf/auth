@@ -24,6 +24,11 @@ class Auth extends Root
             return null;
         }
 
+        if ($this->container->has('user')) {
+            unset($this->container['user']);
+        }
+        $this->container['user'] = $user;
+
         return $this->auth_storage->setUser($user);
     }
 

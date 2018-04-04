@@ -32,14 +32,6 @@ class JWTTest extends TestCase
         $this->assertNull($this->app->getContainer()->auth->getUser());
     }
 
-    public function testGetUserFromContainer(): void
-    {
-        $this->app->getContainer()['user'] = ['login' => 'login'];
-
-        $this->assertInstanceOf('\Wtf\Root', $this->app->getContainer()->auth->getUser());
-        $this->assertEquals('login', $this->app->getContainer()->auth->getUser()->get('login'));
-    }
-
     public function testGetUserFromRequest(): void
     {
         $request = $this->app->getContainer()['request'];

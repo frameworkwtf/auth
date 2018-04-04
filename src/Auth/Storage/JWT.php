@@ -45,12 +45,6 @@ class JWT extends Root implements StorageInterface
         }
         //@codeCoverageIgnoreEnd
 
-        // wtf/rest implementation
-        if ($this->container->has('user')) {
-            return $this->entity($this->config('auth.entity'))->setData($this->user);
-        }
-
-        // tuupola/slim-jwt-auth implementation
         if ($token = $this->request->getAttribute($this->config('jwt.attribute', 'token'))) {
             $data = (array) (\is_object($token) && \property_exists($token, 'data') ? $token->data : ($token['data'] ?? $token));
 

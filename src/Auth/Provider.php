@@ -27,5 +27,8 @@ class Provider implements ServiceProviderInterface
         $container['auth'] = function ($c) {
             return new \Wtf\Auth($c);
         };
+        $container['user'] = function ($c) {
+            return $c['auth']->getUser();
+        };
     }
 }
