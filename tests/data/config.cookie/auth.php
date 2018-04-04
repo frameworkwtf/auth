@@ -10,4 +10,8 @@ return [
         'algo' => PASSWORD_DEFAULT,
         'options' => [],
     ],
+    'rbac' => [
+        'defaultRole' => 'anonymous',
+        'errorCallback' => null,
+    ],
 ];
