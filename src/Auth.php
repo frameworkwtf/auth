@@ -33,6 +33,29 @@ class Auth extends Root
     }
 
     /**
+     * Generate special code for user who forgot password.
+     *
+     * @return string code
+     */
+    public function forgot(string $login): string
+    {
+        return $this->auth_repository->forgot($login);
+    }
+
+    /**
+     * Reset user password by code.
+     *
+     * @param string $code         Return value of self::forgot()
+     * @param string $new_password New password for user
+     *
+     * @return bool
+     */
+    public function reset(string $code, string $new_password): bool
+    {
+        return $this->auth_repository->reset($code, $new_password);
+    }
+
+    /**
      * Check if current user is logged in.
      *
      * @return bool

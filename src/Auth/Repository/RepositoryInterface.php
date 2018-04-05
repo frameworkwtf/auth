@@ -29,4 +29,21 @@ interface RepositoryInterface
      * @return null|Root
      */
     public function login(string $login, string $password): ?Root;
+
+    /**
+     * Generate special code for user who forgot password.
+     *
+     * @return string code
+     */
+    public function forgot(string $login): string;
+
+    /**
+     * Reset user password by code.
+     *
+     * @param string $code         Return value of self::forgot()
+     * @param string $new_password New password for user
+     *
+     * @return bool
+     */
+    public function reset(string $code, string $new_password): bool;
 }

@@ -12,6 +12,14 @@ class Dummy extends \Wtf\Root
         'password' => '$2y$10$W4LwVSVpKxZqXelwwcV92ORTZGIodZRK8c1o4VW84sPExYRXfSUL6', //me
     ];
 
+    public function __construct($container)
+    {
+        parent::__construct($container);
+        if ($container->has('forgot')) {
+            $this->set('forgot', $container->get('forgot'));
+        }
+    }
+
     public function setData($data)
     {
         $this->data = \array_merge($this->data, $data);
@@ -34,10 +42,16 @@ class Dummy extends \Wtf\Root
         if (
             ('login' === \array_keys($where)[0] && 'login' === $where['login'])
             || ('id' === \array_keys($where)[0] && '1' === $where['id'])
+            || ('forgot' === \array_keys($where)[0] && 'notexists' !== $where['forgot'])
         ) {
             return true;
         }
 
         return false;
+    }
+
+    public function save(bool $validate = true): \Wtf\Root
+    {
+        return $this;
     }
 }

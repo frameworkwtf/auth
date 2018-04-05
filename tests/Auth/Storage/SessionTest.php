@@ -97,4 +97,34 @@ class SessionTest extends TestCase
         $this->app->getContainer()->auth->logout();
         $this->assertNull($this->app->getContainer()->auth->getUser());
     }
+
+    /**
+     * @runInSeparateProcess
+     */
+    public function testForgot(): void
+    {
+        \session_start();
+        $this->assertInternalType('string', $this->app->getContainer()->auth->forgot('wrong'));
+        $this->assertInternalType('string', $this->app->getContainer()->auth->forgot('login'));
+    }
+
+    /**
+     * @runInSeparateProcess
+     */
+    public function testReset(): void
+    {
+        \session_start();
+        $code = $this->app->getContainer()->auth->forgot('login');
+        $this->app->getContainer()['forgot_code'] = $code;
+        $this->assertTrue($this->app->getContainer()->auth->reset($code, 'me2'));
+    }
+
+    /**
+     * @runInSeparateProcess
+     */
+    public function testResetNull(): void
+    {
+        \session_start();
+        $this->assertFalse($this->app->getContainer()->auth->reset('notexists', 'password'));
+    }
 }

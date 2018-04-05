@@ -27,6 +27,16 @@ class User extends Root implements RepositoryInterface
     }
 
     /**
+     * Get forgot password code field, eg: 'forgot'.
+     *
+     * @return string
+     */
+    public function getForgotField(): string
+    {
+        return 'forgot';
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function login(string $login, string $password): ?Root
@@ -62,5 +72,39 @@ class User extends Root implements RepositoryInterface
         }
 
         return null;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function forgot(string $login): string
+    {
+        $user = $this->getByLogin($login);
+        if (null === $user) {
+            return '';
+        }
+
+        $user->set($this->getForgotField(), \md5($user->getId().\random_int(PHP_INT_MIN, PHP_INT_MAX)))->save(false);
+
+        return $user->get($this->getForgotField());
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function reset(string $code, string $new_password): bool
+    {
+        $user = $this->entity($this->config('auth.entity', 'user'));
+        if (!$user->has([$this->getForgotField() => $code])) {
+            return false;
+        }
+
+        $user->load($code, $this->getForgotField())
+             ->setData([
+             $this->getForgotField() => null,
+             $this->getPasswordField() => \password_hash($new_password, PASSWORD_DEFAULT),
+         ])->save(false);
+
+        return true;
     }
 }
