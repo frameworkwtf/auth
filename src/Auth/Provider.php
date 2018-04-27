@@ -30,5 +30,16 @@ class Provider implements ServiceProviderInterface
         $container['user'] = function ($c) {
             return $c['auth']->getUser();
         };
+
+        //@codeCoverageIgnoreStart
+        if (\class_exists('\Symfony\Component\Ldap\Ldap')) {
+            $container['ldap_client'] = function ($c) {
+                $ldap = \Symfony\Component\Ldap\Ldap::create('ext_ldap', $c['config']('auth.ldap.server'));
+                $ldap->bind($c['config']('auth.ldap.admin.dn'), $c['config']('auth.ldap.admin.password'));
+
+                return $ldap;
+            };
+        }
+        //@codeCoverageIgnoreEnd
     }
 }

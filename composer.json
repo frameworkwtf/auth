@@ -12,7 +12,8 @@
     "suggest": {
         "wtf/html": "HTML bundle with twig and sessions (to implement session-based auth)",
         "wtf/rest": "REST bundle with JWT tokens (to implement jwt-based auth)",
-        "dflydev/fig-cookies": "To implement cookie-based auth"
+        "dflydev/fig-cookies": "To implement cookie-based auth",
+        "symfony/ldap": "For LDAP auth"
     },
     "autoload": {
         "psr-4": {
