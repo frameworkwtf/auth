@@ -63,10 +63,11 @@ class LDAP extends Root implements RepositoryInterface
         foreach ($collection->toArray() as $entry) {
             $user = $this->entity($this->config('auth.entity'))->load($entry->getDn(), $this->config('auth.ldap.fields.loginInDb', 'email'));
             foreach ($entry->getAttributes() as $attribute => $value) {
-                $field = $this->config('auth.fields.map.'.$attribute);
+                $field = $this->config('auth.ldap.fields.map.'.$attribute);
                 if ($field) {
                     $user->set($field, $value[0] ?? null);
                 }
+                $user->set($this->config('auth.ldap.fields.loginInDb', 'email'), $entry->getDn());
             }
             $user->save();
 
