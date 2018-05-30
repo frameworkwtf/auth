@@ -40,6 +40,12 @@ class Provider implements ServiceProviderInterface
                 return $ldap;
             };
         }
+        // if wtf/orm not installed, we use \Wtf\Root class directly
+        if (!\class_exists('\Wtf\ORM\Entity')) {
+            $container['entity'] = $container->protect(function (string $name) use ($container) {
+                return new \Wtf\Root($container);
+            });
+        }
         //@codeCoverageIgnoreEnd
     }
 }
