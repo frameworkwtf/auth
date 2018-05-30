@@ -5,7 +5,6 @@ declare(strict_types=1);
 return [
     'providers' => [
         '\Wtf\Rest\Provider',
-        '\Wtf\ORM\Provider',
         '\Wtf\Auth\Provider',
     ],
     'sentry' => [

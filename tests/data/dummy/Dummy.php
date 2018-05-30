@@ -20,18 +20,6 @@ class Dummy extends \Wtf\Root
         }
     }
 
-    public function setData($data)
-    {
-        $this->data = \array_merge($this->data, $data);
-
-        return $this;
-    }
-
-    public function getData()
-    {
-        return $this->data;
-    }
-
     public function load($value, $field = 'id', $fields = '*')
     {
         return $this;
