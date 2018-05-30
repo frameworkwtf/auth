@@ -6,10 +6,10 @@
     "prefer-stable": true,
     "minimum-stability": "dev",
     "require": {
-        "wtf/core": "^1.1.1",
-        "wtf/orm": "^1"
+        "wtf/core": "^1.1.1"
     },
     "suggest": {
+        "wtf/orm": "To use User repository",
         "wtf/html": "HTML bundle with twig and sessions (to implement session-based auth)",
         "wtf/rest": "REST bundle with JWT tokens (to implement jwt-based auth)",
         "dflydev/fig-cookies": "To implement cookie-based auth",
