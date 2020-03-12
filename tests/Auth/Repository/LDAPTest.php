@@ -45,7 +45,7 @@ class LDAPTest extends TestCase
 
     public function testUniplemented(): void
     {
-        $this->assertInternalType('string', $this->app->getContainer()->auth_repository->forgot('nevermind'));
+        $this->assertIsString($this->app->getContainer()->auth_repository->forgot('nevermind'));
         $this->assertFalse($this->app->getContainer()->auth_repository->reset('nevermind', 'nevermind'));
     }
 }

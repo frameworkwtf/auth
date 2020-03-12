@@ -19,7 +19,7 @@ class Cookie extends Root implements StorageInterface
         }
         //@codeCoverageIgnoreEnd
 
-        return \Dflydev\FigCookies\Cookie::create('user_id', $user->getId());
+        return \Dflydev\FigCookies\Cookie::create('user_id', (string) $user->getId());
     }
 
     /**

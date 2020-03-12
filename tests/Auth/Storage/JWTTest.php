@@ -36,7 +36,7 @@ class JWTTest extends TestCase
     {
         $request = $this->app->getContainer()['request'];
         unset($this->app->getContainer()['request']);
-        $this->app->getContainer()['request'] = $request->withAttribute('token', ['data' => ['login' => 'login']]);
+        $this->app->getContainer()['request'] = $request->withAttribute('token', ['data' => ['id' => 1, 'login' => 'login']]);
         $this->assertInstanceOf('\Wtf\Root', $this->app->getContainer()->auth->getUser());
         $this->assertEquals('login', $this->app->getContainer()->auth->getUser()->get('login'));
     }
@@ -45,7 +45,7 @@ class JWTTest extends TestCase
     {
         $this->assertNull($this->app->getContainer()->auth->login('notexist', 'password'));
         $this->assertNull($this->app->getContainer()->auth->login('login', 'wrongpassword'));
-        $this->assertInternalType('string', $this->app->getContainer()->auth->login('login', 'me'));
+        $this->assertIsString($this->app->getContainer()->auth->login('login', 'me'));
     }
 
     public function testLogout(): void
