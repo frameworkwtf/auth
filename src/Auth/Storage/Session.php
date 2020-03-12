@@ -35,7 +35,10 @@ class Session extends Root implements StorageInterface
         }
 
         if ($_SESSION['user'] ?? null) {
-            return $this->entity($this->config('auth.entity'))->setData($_SESSION['user']);
+            $entity = $this->entity($this->config('auth.entity'));
+            if ($entity->has(['id' => $_SESSION['user']['id']])) {
+                return $entity->load($_SESSION['user']['id']);
+            }
         }
 
         return null;

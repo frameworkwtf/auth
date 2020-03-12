@@ -11,23 +11,17 @@ interface StorageInterface
     /**
      * Set user data to storage.
      *
-     * @param Root $user
-     *
      * @return mixed
      */
     public function setUser(Root $user);
 
     /**
      * Get current user from storage.
-     *
-     * @return null|Root
      */
     public function getUser(): ?Root;
 
     /**
      * Check if current user logged in.
-     *
-     * @return bool
      */
     public function isLoggedIn(): bool;
 

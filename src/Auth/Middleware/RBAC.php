@@ -15,12 +15,6 @@ class RBAC extends Root
 {
     /**
      * Run RBAC check.
-     *
-     * @param ServerRequestInterface $request
-     * @param ResponseInterface      $response
-     * @param callable               $next
-     *
-     * @return ResponseInterface
      */
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, callable $next): ResponseInterface
     {
@@ -48,11 +42,6 @@ class RBAC extends Root
 
     /**
      * Check if request allowed for current user.
-     *
-     * @param ServerRequestInterface $request
-     * @param string                 $role
-     *
-     * @return bool
      */
     protected function isAllowed(ServerRequestInterface $request, string $role): bool
     {

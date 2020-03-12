@@ -18,8 +18,6 @@ class User extends Root implements RepositoryInterface
 
     /**
      * Get password field, eg: 'password'.
-     *
-     * @return string
      */
     public function getPasswordField(): string
     {
@@ -28,8 +26,6 @@ class User extends Root implements RepositoryInterface
 
     /**
      * Get forgot password code field, eg: 'forgot'.
-     *
-     * @return string
      */
     public function getForgotField(): string
     {

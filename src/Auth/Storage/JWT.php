@@ -48,7 +48,10 @@ class JWT extends Root implements StorageInterface
         if ($token = $this->request->getAttribute($this->config('jwt.attribute', 'token'))) {
             $data = (array) (\is_object($token) && \property_exists($token, 'data') ? $token->data : ($token['data'] ?? $token));
 
-            return $this->entity($this->config('auth.entity'))->setData($data);
+            $entity = $this->entity($this->config('auth.entity'));
+            if ($entity->has(['id' => $data['id']])) {
+                return $entity->load($data['id']);
+            }
         }
 
         return null;

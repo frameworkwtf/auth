@@ -11,9 +11,6 @@ class Auth extends Root
      *
      * Return result, based by selected session storage
      *
-     * @param string $login
-     * @param string $password
-     *
      * @return mixed
      */
     public function login(string $login, string $password)
@@ -47,8 +44,6 @@ class Auth extends Root
      *
      * @param string $code         Return value of self::forgot()
      * @param string $new_password New password for user
-     *
-     * @return bool
      */
     public function reset(string $code, string $new_password): bool
     {
@@ -57,8 +52,6 @@ class Auth extends Root
 
     /**
      * Check if current user is logged in.
-     *
-     * @return bool
      */
     public function isLoggedIn(): bool
     {
@@ -67,8 +60,6 @@ class Auth extends Root
 
     /**
      * Get current user.
-     *
-     * @return null|Root
      */
     public function getUser(): ?Root
     {
