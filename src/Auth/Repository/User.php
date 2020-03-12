@@ -60,11 +60,13 @@ class User extends Root implements RepositoryInterface
                 if ($entity->has([$field => $login])) {
                     return $entity->load($login, $field);
                 }
+                // @codeCoverageIgnoreStart
             } catch (\Throwable $t) {
                 //If field does not exist, exception will be thrown,
                 //but for that case it's not a problem,
                 //so just ignore it and go to the next field
             }
+            // @codeCoverageIgnoreEnd
         }
 
         return null;
@@ -97,9 +99,9 @@ class User extends Root implements RepositoryInterface
 
         $user->load($code, $this->getForgotField())
              ->setData([
-             $this->getForgotField() => null,
-             $this->getPasswordField() => \password_hash($new_password, PASSWORD_DEFAULT),
-         ])->save(false);
+                 $this->getForgotField() => null,
+                 $this->getPasswordField() => \password_hash($new_password, PASSWORD_DEFAULT),
+             ])->save(false);
 
         return true;
     }

@@ -69,7 +69,7 @@ class SessionTest extends TestCase
     public function testGetUser(): void
     {
         \session_start();
-        $_SESSION['user'] = ['id' => 1, 'login' => 'login'];
+        $_SESSION['user'] = ['id' => '1', 'login' => 'login'];
 
         $this->assertInstanceOf('\Wtf\Root', $this->app->getContainer()->auth->getUser());
         $this->assertEquals('login', $this->app->getContainer()->auth->getUser()->get('login'));
@@ -92,7 +92,7 @@ class SessionTest extends TestCase
     public function testLogout(): void
     {
         \session_start();
-        $this->app->getContainer()->auth->login('login', 'me');
+        $_SESSION['user'] = ['id' => '1', 'login' => 'login'];
         $this->assertInstanceOf('\Wtf\Root', $this->app->getContainer()->auth->getUser());
         $this->app->getContainer()->auth->logout();
         $this->assertNull($this->app->getContainer()->auth->getUser());

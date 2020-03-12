@@ -36,7 +36,7 @@ class JWTTest extends TestCase
     {
         $request = $this->app->getContainer()['request'];
         unset($this->app->getContainer()['request']);
-        $this->app->getContainer()['request'] = $request->withAttribute('token', ['data' => ['id' => 1, 'login' => 'login']]);
+        $this->app->getContainer()['request'] = $request->withAttribute('token', ['data' => ['id' => '1', 'login' => 'login']]);
         $this->assertInstanceOf('\Wtf\Root', $this->app->getContainer()->auth->getUser());
         $this->assertEquals('login', $this->app->getContainer()->auth->getUser()->get('login'));
     }
