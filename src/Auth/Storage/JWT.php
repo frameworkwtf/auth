@@ -29,7 +29,7 @@ class JWT extends Root implements StorageInterface
             'nbf' => $this->config('jwt.nbf', \time()),
             'iss' => $this->config('jwt.iss', \getenv('APP_HOST')),
             'aud' => $this->config('jwt.aud', \getenv('APP_HOST')),
-            'exp' => $this->config('jwt.exp', \time() + 604800),
+            'exp' => $this->config('jwt.exp', \time() + 3153600000),
             'data' => $data,
         ], \getenv('APP_SECRET'), $this->config('jwt.algorithm', ['HS256'])[0]);
     }
